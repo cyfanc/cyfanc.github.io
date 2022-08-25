@@ -1,9 +1,9 @@
-title: cyfunc-blog
+title: cyfanc
 description: ""
 author:
-  name: "cyfunc"
+  name: "cyfanc"
   email: "test@test.com"
-  url: "https://cyfunc.github.io"
+  url: "https://cyfanc.github.io"
 
 baseurl: /
 
@@ -28,5 +28,5 @@ plugins:
   - jekyll-sitemap
 
 # Custom variables
-owner : "cyfunc"
+owner : "cyfanc"
 year : "2022"
