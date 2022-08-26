@@ -1,5 +1,5 @@
 ---
-title: LD_PRELOAD hook 
+title: LD_PRELOAD Hook 
 published: true
 ---
 
