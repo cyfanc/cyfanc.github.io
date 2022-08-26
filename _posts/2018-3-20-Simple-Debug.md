@@ -3,7 +3,9 @@ title: Simple Debug
 published: true
 ---
 
-# debug.h
+# Simple Debug
+
+## debug.h
 ```c
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
