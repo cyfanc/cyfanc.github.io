@@ -35,10 +35,10 @@ int main(int argc, const char * argv[])
 {
     int ret = 1;
 
-    DEBUG("return:%d\n",ret_test(ret));
+    DEBUG("return:%d\n",define_test(ret));
 
     ret = 0;
-    DEBUG("return:%d\n",ret_test(ret));
+    DEBUG("return:%d\n",define_test(ret));
     
     return 0;
 }
