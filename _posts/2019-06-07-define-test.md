@@ -7,39 +7,29 @@ published: true
 ## test.c
 ```c
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#define DEBUG(fmt, ...) printf("\033[31m [%05d]\033[34m-%s: \033[0m" fmt "\n", __LINE__, __func__, ##__VA_ARGS__)
-
+#define PRINTF_GREEN(fmt, args...) printf("\033[32m[%s:%s:%d]:["  fmt "]\033[0m\n", __FILE__,__func__,__LINE__,##args);
+#define PRINTF_RED(fmt, args...) printf("\033[31m[%s:%s:%d]:[" fmt "]\033[0m\n",  __FILE__,__func__,__LINE__,##args);
+#define PRINTF_PINK(fmt, args...) printf("\033[35m[%s:%s:%d]:[" fmt "]\033[0m\n",  __FILE__,__func__,__LINE__,##args);
+#define LOG_INFO(fmt,args...) PRINTF_GREEN(fmt,##args)
+#define LOG_DEBUG(fmt,args...) PRINTF_PINK(fmt,##args)
+#define LOG_ERR(fmt,args...) PRINTF_RED(fmt,##args)
+#define LOG(level,fmt,args...) LOG_##level(fmt,##args)
+#define DEBUG(fmt, ...) LOG_DEBUG(fmt,##__VA_ARGS__)
 #define ERR_ACTION(condition, action, value, fmt, ...) \
     if (condition)                                     \
     {                                                  \
-        DEBUG(fmt, ##__VA_ARGS__);                     \
+        LOG_INFO(fmt, ##__VA_ARGS__);                  \
         action value;                                  \
     }
 
-int define_test(int i)
+int main()
 {
-    ERR_ACTION(i == 0, return, -1, "%s", "error value return -1");
-
-    ERR_ACTION(i == 1, goto, err, "%s", "goto err");
-
-    return 0;
-
-err:
-    return 1;
-}
-
-int main(int argc, const char *argv[])
-{
-    int ret = 1;
-
-    DEBUG("return:%d\n", define_test(ret));
-
-    ret = 0;
-    DEBUG("return:%d\n", define_test(ret));
-
+    LOG(ERR,"%s","111");
+    LOG(INFO,"%s","222");
+    LOG(DEBUG,"%s","333");
+    ERR_ACTION(1, return, -1, "%s", "error value return -1");
+    
     return 0;
 }
 ```
