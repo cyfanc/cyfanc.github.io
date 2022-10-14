@@ -22,18 +22,20 @@ int getSubnetMask()
 
     for (ifa = ifList; ifa != NULL; ifa = ifa->ifa_next)
     {
+        if(ifa == NULL || ifa->ifa_addr == NULL) continue;
+        
         if(ifa->ifa_addr->sa_family == AF_INET)
         {
-            printf("n>>> interfaceName: %sn", ifa->ifa_name);
+            printf("n>>> interfaceName: %s\n", ifa->ifa_name);
 
             sin = (struct sockaddr_in *)ifa->ifa_addr;
-            printf(">>> ipAddress: %sn", inet_ntoa(sin->sin_addr));
+            printf(">>> ipAddress: %s\n", inet_ntoa(sin->sin_addr));
 
             sin = (struct sockaddr_in *)ifa->ifa_dstaddr;
-            printf(">>> broadcast: %sn", inet_ntoa(sin->sin_addr));
+            printf(">>> broadcast: %s\n", inet_ntoa(sin->sin_addr));
 
             sin = (struct sockaddr_in *)ifa->ifa_netmask;
-            printf(">>> subnetMask: %sn", inet_ntoa(sin->sin_addr));
+            printf(">>> subnetMask: %s\n", inet_ntoa(sin->sin_addr));
         }
     }
 
